@@ -4,9 +4,9 @@ var ballX = 255;
 var ballY = 255;
 var ballSize = 10;
 var ballSpeedX = 10;
-var ballSpeedY = 8;
-var paddleX = 20;
-var paddleY = 255;
+var ballSpeedY = 0;
+var paddleX = 30;
+var paddleY = 200;
 var paddleWidth = 40;
 var paddleHeight = 160;
 var paddleSpeed;
@@ -49,9 +49,18 @@ function moveBall(){
     }
 }
 
+function ballPaddleCollision(){
+    if(ballX < paddleX+paddleWidth+ballSize && 
+        ballY > paddleY && 
+        ballY < paddleY+paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
+}
+
 // BIG MOVERS #######
 function moveEverything() {
     moveBall();
+    ballPaddleCollision();
 }
 
 function drawEverything() {
