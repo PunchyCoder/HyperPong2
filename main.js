@@ -5,6 +5,12 @@ var ballY = 255;
 var ballSize = 10;
 var ballSpeedX = 10;
 var ballSpeedY = 8;
+var paddleX = 20;
+var paddleY = 255;
+var paddleWidth = 40;
+var paddleHeight = 160;
+var paddleSpeed;
+var paddleColor = 'green';
 
 
 window.onload = function() {
@@ -17,6 +23,7 @@ window.onload = function() {
             drawEverything();
     }, 1000/framesPerSecond )
 }
+
 
 function drawBall(centerX,centerY, radius,color) {
     canvasContext.fillStyle = color;
@@ -50,5 +57,6 @@ function moveEverything() {
 function drawEverything() {
     colorRect(0,0, canvas.width,canvas.height, 'black');
     drawBall(ballX,ballY, ballSize,'white');
+    colorRect(paddleX,paddleY, paddleWidth,paddleHeight, paddleColor)
 }
 
