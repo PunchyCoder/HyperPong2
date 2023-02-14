@@ -2,9 +2,9 @@ var canvas;
 var canvasContext;
 var ballX = 255;
 var ballY = 255;
-var ballSize = 5;
-var ballSpeedX = 6;
-var ballSpeedY = 4;
+var ballSize = 10;
+var ballSpeedX = 10;
+var ballSpeedY = 8;
 
 
 window.onload = function() {
@@ -32,6 +32,14 @@ function colorRect(leftX,topY, width,height, drawColor){
 
 function moveBall(){
     ballX += ballSpeedX;
+    ballY += ballSpeedY;
+
+    if(ballX > canvas.width-ballSize || ballX < ballSize) {
+        ballSpeedX = -ballSpeedX;
+    }
+    if(ballY > canvas.height-ballSize || ballY < ballSize) {
+        ballSpeedY = -ballSpeedY;
+    }
 }
 
 // BIG MOVERS #######
@@ -41,6 +49,6 @@ function moveEverything() {
 
 function drawEverything() {
     colorRect(0,0, canvas.width,canvas.height, 'black');
-    drawBall(ballX,ballY, 10,'white');
+    drawBall(ballX,ballY, ballSize,'white');
 }
 
