@@ -50,6 +50,10 @@ window.onload = function() {
     }, 1000/framesPerSecond )
 }
 
+function ballReset() {
+    ballX = canvas.width/2;
+    ballY = canvas.height/2;
+}
 
 function drawBall(centerX,centerY, radius,color) {
     canvasContext.fillStyle = color;
@@ -76,7 +80,10 @@ function moveBall(){
     ballX += ballSpeedX;
     ballY += ballSpeedY;
 
-    if(ballX > canvas.width-ballSize || ballX < ballSize) {
+    if(ballX < 0) {
+        ballReset();
+    }
+    if(ballX > canvas.width-ballSize) {
         ballSpeedX = -ballSpeedX;
     }
     if(ballY > canvas.height-ballSize || ballY < ballSize) {
