@@ -7,7 +7,7 @@ var ballSpeedX = 10;
 var ballSpeedY = 0;
 var paddleX = 30;
 var paddleY = 200;
-var paddleWidth = 40;
+var paddleThickness = 40;
 var paddleHeight = 160;
 var paddleSpeed = 15;
 var paddleColor = 'green';
@@ -18,7 +18,7 @@ var deadSpace = 30;
 var paddle2 = {
     xPos: null,
     yPos: 255,
-    width: 40,
+    thickness: 40,
     height: 100,
     speed: 18,
     color: 'white'
@@ -51,7 +51,7 @@ window.onload = function() {
     canvas = document.getElementById('gameCanvas');
     canvasContext =canvas.getContext('2d');
 
-    paddle2.xPos = canvas.width-paddle2.width-deadSpace;
+    paddle2.xPos = canvas.width-paddle2.thickness-deadSpace;
    
     handleEvents();
     
@@ -104,7 +104,7 @@ function moveBall(){
 }
 
 function ballPaddleCollision(){
-    if(ballX < paddleX+paddleWidth+ballSize && 
+    if(ballX < paddleX+paddleThickness+ballSize && 
         ballY > paddleY && 
         ballY < paddleY+paddleHeight) {
         ballSpeedX = -ballSpeedX;
@@ -123,9 +123,9 @@ function drawEverything() {
     drawBall(ballX,ballY, ballSize,'white');
 
     // draw player's paddle
-    colorRect(paddleX,paddleY, paddleWidth,paddleHeight, paddleColor)
+    colorRect(paddleX,paddleY, paddleThickness,paddleHeight, paddleColor)
 
     // draw ai paddle
-    colorRect(paddle2.xPos,paddle2.yPos, paddle2.width,paddle2.height, paddle2.color)
+    colorRect(paddle2.xPos,paddle2.yPos, paddle2.thickness,paddle2.height, paddle2.color)
 }
 
