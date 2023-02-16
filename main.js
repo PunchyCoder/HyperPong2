@@ -12,6 +12,20 @@ var paddleHeight = 160;
 var paddleSpeed = 15;
 var paddleColor = 'green';
 
+// space between paddle and it's closest horizontal edge
+var deadSpace = 30;
+
+var paddle2 = {
+    xPos: null,
+    yPos: 255,
+    width: 40,
+    height: 100,
+    speed: 18,
+    color: 'white'
+}
+
+
+
 var keyControls = {
     ArrowUp: false,
     ArrowDown: false
@@ -37,10 +51,8 @@ window.onload = function() {
     canvas = document.getElementById('gameCanvas');
     canvasContext =canvas.getContext('2d');
 
-    /*document.addEventListener('keydown',
-        function(evt) {
-            console.log(evt.key);
-        })*/
+    paddle2.xPos = canvas.width-paddle2.width-deadSpace;
+   
     handleEvents();
     
     var framesPerSecond = 30;
@@ -109,6 +121,11 @@ function moveEverything() {
 function drawEverything() {
     colorRect(0,0, canvas.width,canvas.height, 'black');
     drawBall(ballX,ballY, ballSize,'white');
+
+    // draw player's paddle
     colorRect(paddleX,paddleY, paddleWidth,paddleHeight, paddleColor)
+
+    // draw ai paddle
+    colorRect(paddle2.xPos,paddle2.yPos, paddle2.width,paddle2.height, paddle2.color)
 }
 
