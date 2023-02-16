@@ -9,13 +9,39 @@ var paddleX = 30;
 var paddleY = 200;
 var paddleWidth = 40;
 var paddleHeight = 160;
-var paddleSpeed;
+var paddleSpeed = 15;
 var paddleColor = 'green';
 
+var keyControls = {
+    ArrowUp: false,
+    ArrowDown: false
+
+}
+
+function handleEvents() {
+    document.addEventListener('keydown',
+        function(evt) {
+            evt.preventDefault;
+            keyControls[evt.key] = true;
+            console.log(keyControls[evt.key])
+        });
+    document.addEventListener('keyup',
+        function(evt) {
+            evt.preventDefault;
+            keyControls[evt.key] = false;
+            console.log(keyControls[evt.key])
+        })
+}
 
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
     canvasContext =canvas.getContext('2d');
+
+    /*document.addEventListener('keydown',
+        function(evt) {
+            console.log(evt.key);
+        })*/
+    handleEvents();
     
     var framesPerSecond = 30;
     setInterval(function() {
@@ -35,6 +61,15 @@ function drawBall(centerX,centerY, radius,color) {
 function colorRect(leftX,topY, width,height, drawColor){
     canvasContext.fillStyle = drawColor;
     canvasContext.fillRect(leftX,topY, width,height);
+}
+
+function movePaddle(){
+    if(keyControls['ArrowUp'] === true) {
+        paddleY -= paddleSpeed;
+    }
+    if(keyControls['ArrowDown'] === true) {
+        paddleY += paddleSpeed;
+    }
 }
 
 function moveBall(){
@@ -61,6 +96,7 @@ function ballPaddleCollision(){
 function moveEverything() {
     moveBall();
     ballPaddleCollision();
+    movePaddle();
 }
 
 function drawEverything() {
